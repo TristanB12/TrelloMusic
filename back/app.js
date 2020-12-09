@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://dellenger:dellenger974@cluster0.fmzdq.mongodb.net/<dbname>?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://tristan:dellenger974@cluster0.jk4co.mongodb.net/<dbname>?retryWrites=true&w=majority',
 {   useNewUrlParser: true,
     useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -19,4 +19,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+const AuthRoutes = require('./routes/authentication')
+
+app.use('/auth', AuthRoutes)
 module.exports = app;
