@@ -57,4 +57,17 @@ body {
     border: 2px solid #A55EEA;
   }
 }
+
+.input {
+  font-family: 'Maven Pro', sans-serif;
+  color: black;
+  padding: .3em 0em;
+  border: none;
+  border-bottom: 3px solid #A55EEA;
+  outline: none;
+
+  &::placeholder {
+    color: black;
+  }
+}
 </style>

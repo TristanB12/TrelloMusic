@@ -8,9 +8,13 @@
           Experience the pleasure of music with
           <h4>TrelloMusic</h4>
         </div>
-        <button class="filled-btn">Try for free</button>
+        <router-link :to="{name: 'SignupPage'}">
+          <button class="filled-btn">Try for free</button>
+        </router-link>
         <p>or</p>
-        <button class="empty-btn">Login</button>
+        <router-link :to="{name: 'LoginPage'}">
+          <button class="empty-btn">Login</button>
+        </router-link>
       </div>
     </main>
   </div>
