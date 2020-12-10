@@ -45,7 +45,10 @@ import axios from 'axios'
                         email: this.email_input,
                         password: this.password_input
                     })
-                    .then(response => console.log(response.data.user))
+                    .then(response => {
+                        this.$store.dispatch('setToken', response.data.token)
+                        this.$store.dispatch('setUser', response.data.user)
+                    })
                     .catch(error => this.error = error.response.data.message)
             }
         },

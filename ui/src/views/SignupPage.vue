@@ -48,7 +48,10 @@ import axios from 'axios'
                         password: this.password_input,
                         confirmPassword: this.confirm_password_input
                     })
-                    .then(response => console.log(response.data.user))
+                    .then(response => {
+                        this.$store.dispatch('setToken', response.data.token)
+                        this.$store.dispatch('setUser', response.data.user)
+                    })
                     .catch(error => this.error = error.response.data.message)
             }
         },
