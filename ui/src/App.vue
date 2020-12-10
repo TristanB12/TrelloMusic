@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderBar />
+    <HeaderBar :navLinks="nav_links" />
     <transition name="fade" mode="out-in">
       <router-view :key="$route.path" />
     </transition>
@@ -9,11 +9,52 @@
 
 <script>
 import HeaderBar from '@/components/HeaderBar.vue';
+import store from '@/store/index.js'
 
   export default {
     components: {
       HeaderBar,
     },
+    data() {
+      return {
+        nav_links_loggedin: [
+          {
+            name: 'Home',
+            routerName: 'HomePage'
+          },
+          {
+            name: 'Profile',
+            routerName: ''
+          },
+          {
+            name: 'Log out',
+            routerName: 'LoginPage'
+          }
+        ],
+        nav_links_non_loggedin: [
+          {
+            name: 'Home',
+            routerName: 'LandingPage'
+          },
+          {
+            name: 'Login',
+            routerName: 'LoginPage'
+          },
+          {
+            name: 'Sign up',
+            routerName: 'SignupPage'
+          }
+        ]
+      }
+    },
+    computed: {
+        nav_links() {
+          if (store.state.isUserLoggedIn)
+            return this.nav_links_loggedin
+          else
+            return this.nav_links_non_loggedin
+        }
+      },
   }
 </script>
 

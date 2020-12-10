@@ -5,9 +5,9 @@
         <h1>TrelloMusic</h1>
         <nav>
           <ul class="nav-links">
-            <li @click="activeNavigation"><router-link :to="{name: 'LandingPage'}" >Home</router-link></li>
-            <li @click="activeNavigation"><router-link :to="{name: 'LoginPage'}">Login</router-link></li>
-            <li @click="activeNavigation"><router-link :to="{name: 'SignupPage'}">Sign up</router-link></li>
+            <li v-for="nav_link in navLinks" :key="nav_link.name" @click="activeNavigation">
+              <router-link :to="{name: nav_link.routerName}" >{{ nav_link.name }}</router-link>
+            </li>
           </ul>
         </nav>
         <div class="burger" @click="activeNavigation">
@@ -22,6 +22,12 @@
 <script>
   export default {
     name: 'Headerbar',
+    props: {
+      navLinks: {
+        type: Array,
+        required: true
+      },
+    },
     methods: {
       activeNavigation() {
         const nav = document.querySelector('.nav-links')

@@ -5,7 +5,7 @@
             <div class="login-pannel">
                 <h3>TrelloMusic</h3>
                 <div v-html="error" class="error"></div>
-                <input type="text"  v-model="email_input" placeholder="Email" class="input">
+                <input type="email"  v-model="email_input" placeholder="Email" class="input">
                 <input type="password" v-model="password_input" placeholder="Password" class="input">
                 <button class="filled-btn" :class="{disabled: !can_login}" @click="login" >Login</button>
             </div>
