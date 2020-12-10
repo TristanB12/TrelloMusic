@@ -5,10 +5,11 @@
             <img src="../assets/headphone3.png" alt="">
             <div class="signup-pannel">
                 <h3>TrelloMusic</h3>
-                <input type="text" placeholder="Email" class="input">
-                <input type="password" placeholder="Password" class="input">
-                <input type="password" placeholder="Confirm password" class="input">
-                <button class="filled-btn">Register</button>
+                <div v-html="error" class="error"></div>
+                <input type="text" v-model="email_input" placeholder="Email" class="input">
+                <input type="password" v-model="password_input" placeholder="Password" class="input">
+                <input type="password" v-model="confirm_password_input" placeholder="Confirm password" class="input">
+                <button class="filled-btn" :class="{disabled: !can_signup}" @click="signup">Register</button>
             </div>
         </main>
     </div>
@@ -16,10 +17,43 @@
 
 <script>
 import HeaderBar from '@/components/HeaderBar.vue';
+import axios from 'axios'
+
     export default {
         name: 'LoginPage',
         components: {
             HeaderBar,
+        },
+        data() {
+            return {
+                email_input: '',
+                password_input: '',
+                confirm_password_input: '',
+                can_signup: false,
+                error: ''
+            }
+        },
+        methods: {
+            canSignup() {
+                if (this.email_input != '' && this.password_input != '' && this.confirm_password_input != '')
+                    this.can_signup = true
+                else
+                    this.can_signup = false
+            },
+            signup() {
+                if (this.can_login === false)
+                    return
+                axios.post('http://localhost:8081/auth/signup', {
+                        email: this.email_input,
+                        password: this.password_input,
+                        confirmPassword: this.confirm_password_input
+                    })
+                    .then(response => console.log(response.data.user))
+                    .catch(error => this.error = error.response.data.message)
+            }
+        },
+        beforeUpdate () {
+            this.canSignup();
         },
     }
 </script>

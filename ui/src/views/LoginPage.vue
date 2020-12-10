@@ -5,9 +5,10 @@
             <img src="../assets/headphone2.png" alt="">
             <div class="login-pannel">
                 <h3>TrelloMusic</h3>
-                <input type="text" placeholder="Email" class="input">
-                <input type="password" placeholder="Password" class="input">
-                <button class="filled-btn">Login</button>
+                <div v-html="error" class="error"></div>
+                <input type="text"  v-model="email_input" placeholder="Email" class="input">
+                <input type="password" v-model="password_input" placeholder="Password" class="input">
+                <button class="filled-btn" :class="{disabled: !can_login}" @click="login" >Login</button>
             </div>
         </main>
     </div>
@@ -15,10 +16,41 @@
 
 <script>
 import HeaderBar from '@/components/HeaderBar.vue';
+import axios from 'axios'
+
     export default {
         name: 'LoginPage',
         components: {
             HeaderBar,
+        },
+        data() {
+            return {
+                email_input: '',
+                password_input: '',
+                error: '',
+                can_login: false
+            }
+        },
+        methods: {
+            canLogin() {
+                if (this.email_input != '' && this.password_input != '')
+                    this.can_login = true
+                else
+                    this.can_login = false
+            },
+            login() {
+                if (this.can_login === false)
+                    return
+                axios.post('http://localhost:8081/auth/login', {
+                        email: this.email_input,
+                        password: this.password_input
+                    })
+                    .then(response => console.log(response.data.user))
+                    .catch(error => this.error = error.response.data.message)
+            }
+        },
+        beforeUpdate () {
+            this.canLogin();
         },
     }
 </script>

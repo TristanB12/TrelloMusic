@@ -23,6 +23,11 @@ body {
   font-family: 'Maven Pro', sans-serif;
 }
 
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .filled-btn {
   font-family: 'Maven Pro', sans-serif;
   font-weight: 500;
@@ -69,5 +74,11 @@ body {
   &::placeholder {
     color: black;
   }
+}
+
+.error {
+  color: red;
+  font-size: 18px;
+  font-weight: 400;
 }
 </style>

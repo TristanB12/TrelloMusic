@@ -10,7 +10,6 @@ module.exports = {
             confirmPassword: Joi.any().valid(Joi.ref('password'))
         })
         const {error, value} = filterSchema.validate(req.body);
-        console.log(error)
         if(error) {
             switch (error.details[0].context.key) {
                 case 'email':
