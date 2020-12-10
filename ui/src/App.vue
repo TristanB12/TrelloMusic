@@ -1,10 +1,20 @@
 <template>
   <div id="app">
-    <router-view/>
+    <HeaderBar />
+    <transition name="fade" mode="out-in">
+      <router-view :key="$route.path" />
+    </transition>
   </div>
 </template>
 
 <script>
+import HeaderBar from '@/components/HeaderBar.vue';
+
+  export default {
+    components: {
+      HeaderBar,
+    },
+  }
 </script>
 
 <style lang="scss">
@@ -21,6 +31,13 @@ body {
 }
 #app {
   font-family: 'Maven Pro', sans-serif;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 .disabled {

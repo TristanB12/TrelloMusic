@@ -1,6 +1,5 @@
 <template>
   <div>
-    <HeaderBar />
     <main>
       <img src="../assets/headphone1.png" alt="">
       <div class="cta-container">
@@ -21,12 +20,8 @@
 </template>
 
 <script>
-import HeaderBar from '@/components/HeaderBar.vue';
   export default {
     name: 'LandingPage',
-    components: {
-      HeaderBar,
-    },
   }
 </script>
 

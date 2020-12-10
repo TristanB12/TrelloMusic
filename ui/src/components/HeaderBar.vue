@@ -5,9 +5,9 @@
         <h1>TrelloMusic</h1>
         <nav>
           <ul class="nav-links">
-            <li><router-link :to="{name: 'LandingPage'}">Home</router-link></li>
-            <li><router-link :to="{name: 'LoginPage'}">Login</router-link></li>
-            <li><router-link :to="{name: 'SignupPage'}">Sign up</router-link></li>
+            <li @click="activeNavigation"><router-link :to="{name: 'LandingPage'}" >Home</router-link></li>
+            <li @click="activeNavigation"><router-link :to="{name: 'LoginPage'}">Login</router-link></li>
+            <li @click="activeNavigation"><router-link :to="{name: 'SignupPage'}">Sign up</router-link></li>
           </ul>
         </nav>
         <div class="burger" @click="activeNavigation">

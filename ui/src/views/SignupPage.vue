@@ -1,6 +1,5 @@
 <template>
     <div>
-        <HeaderBar />
         <main>
             <img src="../assets/headphone3.png" alt="">
             <div class="signup-pannel">
@@ -16,14 +15,10 @@
 </template>
 
 <script>
-import HeaderBar from '@/components/HeaderBar.vue';
 import axios from 'axios'
 
     export default {
         name: 'LoginPage',
-        components: {
-            HeaderBar,
-        },
         data() {
             return {
                 email_input: '',
